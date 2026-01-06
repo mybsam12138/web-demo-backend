@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: web-demo-backend
+    data:
+      redis:
+        host: localhost
+        port: 6379
+        password: # Optional, leave empty if no password
+        database: 0
+        timeout: 2000ms
+        lettuce:
+          pool:
+            max-active: 8
+            max-idle: 8
+            min-idle: 0
+
+# OAuth Configuration
+oauth:
+  providers:
+    oauth_google:
+      client-id: 640708838928-d7b08v9brteunn3shaftn9m24uca0gef.apps.googleusercontent.com
+      client-secret: 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
+      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_GOOGLE
+    oauth_twitter:
+      client-id: f3wvNiOKi5yvHfj8OyNKQ68hS
+      client-secret: nOtZGQ2eRJoYrXGDL8KogeGcsj6ziB3Qth69BE02qSB23eqUfx
+      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_TWITTER
+
