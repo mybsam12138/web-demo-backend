@@ -5,7 +5,7 @@ spring:
   application:
     name: web-demo-backend
   redis:
-    host: redis
+    host: redis123123
     port: 6379
     password: # Optional, leave empty if no password
     database: 0
