@@ -8,9 +8,11 @@ import com.github.justauth.oauth.strategy.OAuthStrategyFactory;
 import lombok.RequiredArgsConstructor;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthUser;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,16 +24,9 @@ public class OAuthController {
     @GetMapping("/callback/{provider}")
     public OAuthCallbackResponse handleCallback(
             @PathVariable OAuthProvider provider,
-            @RequestParam Map<String, String> params) {
+            @RequestParam AuthCallback callback) {
         try {
             OAuthCommonService service = oAuthStrategyFactory.get(provider);
-            AuthCallback callback = AuthCallback.builder()
-                    .code(params.get("code"))
-                    .state(params.get("state"))
-                    .oauth_token(params.get("oauth_token"))
-                    .oauth_verifier(params.get("oauth_verifier"))
-                    .build();
-            
             AuthUser authUser = service.getOauthUser(callback);
             OAuthUserDto userDto = new OAuthUserDto(
                     authUser.getUuid(),
