@@ -4,17 +4,18 @@ server:
 spring:
   application:
     name: web-demo-backend
-  redis:
-    host: redis123123
-    port: 6379
-    password: # Optional, leave empty if no password
-    database: 0
-    timeout: 2000ms
-    lettuce:
-      pool:
-        max-active: 8
-        max-idle: 8
-        min-idle: 0
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password: # Optional, leave empty if no password
+      database: 0
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
 
 # OAuth Configuration
 oauth:
