@@ -12,6 +12,7 @@ import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class OAuthController {
     @GetMapping("/callback/{provider}")
     public RedirectView handleCallback(
             @PathVariable OAuthProvider provider,
-            @RequestParam AuthCallback callback) {
+            @ModelAttribute AuthCallback callback) {
         try {
             log.info("Processing {} OAuth callback", provider.name());
             OAuthCommonService service = oAuthStrategyFactory.get(provider);
