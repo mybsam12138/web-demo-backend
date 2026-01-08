@@ -42,14 +42,6 @@ bin/
 # IDE - VS Code
 .vscode/
 
-# Spring Boot
-application-local.yml
-application-local.properties
-application-*.yml
-application-*.properties
-!application.yml
-!application.properties
-
 # OS
 .DS_Store
 .DS_Store?
