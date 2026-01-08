@@ -71,4 +71,8 @@ oauth:
       client-id: f3wvNiOKi5yvHfj8OyNKQ68hS
       client-secret: nOtZGQ2eRJoYrXGDL8KogeGcsj6ziB3Qth69BE02qSB23eqUfx
       redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_TWITTER
+    oauth_github:
+      client-id: Ov23liHVP8DJxfl5jYup
+      client-secret: 825801e07450d201cd85c8982a8e54d4e2ebfb5f
+      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GITHUB
 
