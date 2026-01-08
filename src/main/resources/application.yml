@@ -66,9 +66,9 @@ oauth:
     oauth_google:
       client-id: 640708838928-d7b08v9brteunn3shaftn9m24uca0gef.apps.googleusercontent.com
       client-secret: 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
-      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_GOOGLE
+      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GOOGLE
     oauth_twitter:
       client-id: f3wvNiOKi5yvHfj8OyNKQ68hS
       client-secret: nOtZGQ2eRJoYrXGDL8KogeGcsj6ziB3Qth69BE02qSB23eqUfx
-      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_TWITTER
+      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_TWITTER
 
