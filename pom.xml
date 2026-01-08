@@ -92,7 +92,7 @@
         <dependency>
             <groupId>com.github</groupId>
             <artifactId>justauth-oauth-spring-boot-starter</artifactId>
-            <version>1.0.8</version>
+            <version>1.0.9</version>
         </dependency>
 
         <!-- Lombok -->
