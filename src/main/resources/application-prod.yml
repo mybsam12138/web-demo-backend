@@ -20,6 +20,15 @@ spring:
     username: root
     password: abcdtestdb
 
+# Flyway Configuration for Prod
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+  baseline-on-migrate: true
+  baseline-version: 0
+  # In production, you might want to disable clean
+  clean-disabled: true
+
 springdoc:
   swagger-ui:
     enabled: false

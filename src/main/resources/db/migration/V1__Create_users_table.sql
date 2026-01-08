@@ -1,3 +1,8 @@
+-- Migration: Create users table
+-- Description: Initial schema for OAuth users
+-- Author: System
+-- Date: 2025-01-XX
+
 CREATE TABLE IF NOT EXISTS `users` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(255) NOT NULL COMMENT 'OAuth provider user ID',
