@@ -75,4 +75,8 @@ oauth:
       client-id: Ov23liHVP8DJxfl5jYup
       client-secret: 825801e07450d201cd85c8982a8e54d4e2ebfb5f
       redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GITHUB
+    oauth_gitee:
+      client-id: cee99e8f7b9700adf78b94bad34aaba6e8c3757b050dd132e0ed9b9d71a9a8a5
+      client-secret: 1cd3ea5607ea07a9894e9c169a38b80a9bf3b0f9c09c57562157107bcf21d18f
+      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GITEE
 
