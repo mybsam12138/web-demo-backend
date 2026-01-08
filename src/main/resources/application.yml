@@ -5,7 +5,7 @@ spring:
   application:
     name: web-demo-backend
   profiles:
-    default: prod
+    avtive: prod
 
 # OAuth Configuration
 oauth:
