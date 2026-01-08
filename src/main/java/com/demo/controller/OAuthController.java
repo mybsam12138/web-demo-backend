@@ -1,8 +1,8 @@
 package com.demo.controller;
 
-import com.demo.exception.ServiceException;
-import com.demo.vo.OAuthCallbackResponse;
-import com.demo.vo.OAuthUserDto;
+import cn.dev33.satoken.stp.StpUtil;
+import com.demo.entity.User;
+import com.demo.service.UserService;
 import com.github.justauth.oauth.OAuthCommonService;
 import com.github.justauth.oauth.enums.OAuthProvider;
 import com.github.justauth.oauth.strategy.OAuthStrategyFactory;
@@ -10,11 +10,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthUser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,30 +25,54 @@ import org.springframework.web.bind.annotation.RestController;
 public class OAuthController {
     
     private final OAuthStrategyFactory oAuthStrategyFactory;
+    private final UserService userService;
+
+    @Value("${app.frontend-url:http://localhost:5173}")
+    private String frontendUrl;
 
     @GetMapping("/callback/{provider}")
-    public OAuthCallbackResponse handleCallback(
+    public RedirectView handleCallback(
             @PathVariable OAuthProvider provider,
             @RequestParam AuthCallback callback) {
         try {
-            log.info(provider.name()+" login");
+            log.info("Processing {} OAuth callback", provider.name());
             OAuthCommonService service = oAuthStrategyFactory.get(provider);
             AuthUser authUser = service.getOauthUser(callback);
-            OAuthUserDto userDto = new OAuthUserDto(
+            
+            // Save or update user in database
+            User user = userService.saveOrUpdateUser(
                     authUser.getUuid(),
+                    provider.name(),
                     authUser.getUsername(),
                     authUser.getNickname(),
                     authUser.getAvatar(),
                     authUser.getEmail()
             );
             
-            String redirectUrl = callback.getState() != null 
-                    ? service.getOauthRedirectUrl(callback.getState()) 
-                    : null;
+            // Login using Sa-Token (create token and store user info)
+            StpUtil.login(user.getId());
+            StpUtil.getSession().set("userId", user.getId());
+            StpUtil.getSession().set("username", user.getUsername());
+            StpUtil.getSession().set("provider", user.getProvider());
+            StpUtil.getSession().set("nickname", user.getNickname());
+            StpUtil.getSession().set("avatar", user.getAvatar());
+            StpUtil.getSession().set("email", user.getEmail());
             
-            return new OAuthCallbackResponse(true, userDto, redirectUrl, null);
+            log.info("OAuth login successful for user: {} (ID: {}), token: {}", 
+                    user.getUsername(), user.getId(), StpUtil.getTokenValue());
+            
+            // Get redirect URL from state or use default frontend URL
+            String redirectUrl = callback.getState() != null 
+                    ? callback.getState() 
+                    : frontendUrl;
+            
+            // Redirect to frontend success page
+            return new RedirectView(redirectUrl + "/callback/success");
         } catch (Exception e) {
-            throw new ServiceException(e.getMessage());
+            log.error("OAuth callback failed for provider: {}", provider, e);
+            // Redirect to frontend error page
+            return new RedirectView(frontendUrl + "/callback/error?message=" + 
+                    java.net.URLEncoder.encode(e.getMessage(), java.nio.charset.StandardCharsets.UTF_8));
         }
     }
 }

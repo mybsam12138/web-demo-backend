@@ -17,6 +17,11 @@ spring:
           max-active: 8
           max-idle: 8
           min-idle: 0
+  datasource:
+    url: jdbc:mysql://localhost:3307/github?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
 
 springdoc:
   swagger-ui:

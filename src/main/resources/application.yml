@@ -7,6 +7,50 @@ spring:
   profiles:
     active: prod
 
+
+# MyBatis-Flex Configuration
+mybatis-flex:
+  mapper-locations: classpath*:/mapper/*.xml
+  type-aliases-package: com.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# Application Configuration
+app:
+  frontend-url: http://localhost:5173
+
+# Sa-Token Configuration
+sa-token:
+  # Token name (cookie name or header name)
+  token-name: satoken
+  # Token timeout (in seconds), default 30 days
+  timeout: 2592000
+  # Activity timeout (in seconds), if not active for this time, token will be invalid
+  activity-timeout: -1
+  # Whether to allow concurrent login (same account can log in at multiple places)
+  is-concurrent: true
+  # Maximum number of concurrent logins for the same account
+  max-login-count: 12
+  # Whether to try reading token from request body
+  is-read-body: false
+  # Whether to try reading token from request header
+  is-read-head: true
+  # Whether to try reading token from cookie
+  is-read-cookie: true
+  # Token prefix (header mode)
+  token-prefix: Bearer
+  # Whether to output operation log on login/logout
+  is-log: true
+  # Token storage location (cookie: cookie, header: header)
+  token-style: cookie
+  # Whether to delete token on logout (cookie mode)
+  is-logout-delete-cookie: true
+  # Whether to enable token timeout check
+  is-token-timeout-check: true
+  # Token storage location: redis (using Redis)
+  token-type: redis
+
 # OAuth Configuration
 oauth:
   providers:
