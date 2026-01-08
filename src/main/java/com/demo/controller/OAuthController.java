@@ -27,7 +27,7 @@ public class OAuthController {
     private final OAuthStrategyFactory oAuthStrategyFactory;
     private final UserService userService;
 
-    @Value("${app.frontend-url:http://localhost:5173}")
+    @Value("${app.frontend-url:http://niudiantask.cn}")
     private String frontendUrl;
 
     @GetMapping("/callback/{provider}")

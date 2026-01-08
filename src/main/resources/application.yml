@@ -27,7 +27,7 @@ mybatis-flex:
 
 # Application Configuration
 app:
-  frontend-url: http://localhost:5173
+  frontend-url: http://niudiantask.cn
 
 # Sa-Token Configuration
 sa-token:
