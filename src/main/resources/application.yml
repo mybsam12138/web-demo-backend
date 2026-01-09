@@ -32,7 +32,7 @@ app:
 # Sa-Token Configuration
 sa-token:
   # Token name (cookie name or header name)
-  token-name: satoken
+  token-name: Authorization
   # Token timeout (in seconds), default 30 days
   timeout: 2592000
   # Activity timeout (in seconds), if not active for this time, token will be invalid
