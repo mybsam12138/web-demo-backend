@@ -11,5 +11,6 @@ public interface UserRepository extends BaseMapper<User> {
     
     @Select("SELECT * FROM users WHERE uuid = #{uuid} AND provider = #{provider} LIMIT 1")
     User findByUuidAndProvider(@Param("uuid")String uuid, @Param("provider") String provider);
+
 }
 

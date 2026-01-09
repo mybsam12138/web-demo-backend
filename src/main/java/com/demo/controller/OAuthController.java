@@ -52,13 +52,6 @@ public class OAuthController {
 
             // Login using Sa-Token (create token and store user info)
             StpUtil.login(user.getId());
-            SaSession session = StpUtil.getSession();
-            setIfNotNull(session, "userId",    user.getId());
-            setIfNotNull(session, "username",  user.getUsername());
-            setIfNotNull(session, "provider",  user.getProvider());
-            setIfNotNull(session, "nickname",  user.getNickname());
-            setIfNotNull(session, "avatar",    user.getAvatar());
-            setIfNotNull(session, "email",     user.getEmail());
 
             log.info("OAuth login successful for user: {} (ID: {}), token: {}",
                     user.getUsername(), user.getId(), StpUtil.getTokenValue());
