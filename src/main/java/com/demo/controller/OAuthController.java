@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import com.demo.entity.User;
 import com.demo.service.UserService;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -52,13 +52,14 @@ public class OAuthController {
             
             // Login using Sa-Token (create token and store user info)
             StpUtil.login(user.getId());
-            StpUtil.getSession().set("userId", user.getId());
-            StpUtil.getSession().set("username", user.getUsername());
-            StpUtil.getSession().set("provider", user.getProvider());
-            StpUtil.getSession().set("nickname", user.getNickname());
-            StpUtil.getSession().set("avatar", user.getAvatar());
-            StpUtil.getSession().set("email", user.getEmail());
-            
+            SaSession session = StpUtil.getSession();
+            setIfNotNull(session, "userId",    user.getId());
+            setIfNotNull(session, "username",  user.getUsername());
+            setIfNotNull(session, "provider",  user.getProvider());
+            setIfNotNull(session, "nickname",  user.getNickname());
+            setIfNotNull(session, "avatar",    user.getAvatar());
+            setIfNotNull(session, "email",     user.getEmail());
+
             log.info("OAuth login successful for user: {} (ID: {}), token: {}", 
                     user.getUsername(), user.getId(), StpUtil.getTokenValue());
             
@@ -74,6 +75,12 @@ public class OAuthController {
             // Redirect to frontend error page
             return new RedirectView(frontendUrl + "/callback/error?message=" + 
                     java.net.URLEncoder.encode(e.getMessage(), java.nio.charset.StandardCharsets.UTF_8));
+        }
+    }
+
+    private void setIfNotNull(SaSession session, String key, Object value) {
+        if (value != null) {
+            session.set(key, value);
         }
     }
 }
