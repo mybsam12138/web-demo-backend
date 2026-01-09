@@ -55,8 +55,7 @@ sa-token:
   is-logout-delete-cookie: true
   # Whether to enable token timeout check
   is-token-timeout-check: true
-  # Token storage location: redis (using Redis)
-  token-type: redis
+
 
 # OAuth Configuration
 oauth:
