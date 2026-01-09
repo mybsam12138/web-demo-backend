@@ -44,15 +44,13 @@ sa-token:
   # Whether to try reading token from request body
   is-read-body: false
   # Whether to try reading token from request header
-  is-read-head: true
+  is-read-header: true
   # Whether to try reading token from cookie
   is-read-cookie: true
   # Token prefix (header mode)
   token-prefix: Bearer
   # Whether to output operation log on login/logout
   is-log: true
-  # Token storage location (cookie: cookie, header: header)
-  token-style: cookie
   # Whether to delete token on logout (cookie mode)
   is-logout-delete-cookie: true
   # Whether to enable token timeout check
