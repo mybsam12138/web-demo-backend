@@ -7,15 +7,6 @@ spring:
   profiles:
     active: prod
 
-# Flyway Configuration
-flyway:
-  enabled: true
-  locations: classpath:db/migration
-  baseline-on-migrate: true
-  baseline-version: 0
-  encoding: UTF-8
-  clean-disabled: true
-  validate-on-migrate: true
 
 # MyBatis-Flex Configuration
 mybatis-flex:
@@ -27,7 +18,7 @@ mybatis-flex:
 
 # Application Configuration
 app:
-  frontend-url: http://niudiantask.cn
+  frontend-url: http://localhost:5173
 
 # Sa-Token Configuration
 sa-token:
@@ -66,17 +57,9 @@ oauth:
     oauth_google:
       client-id: 640708838928-d7b08v9brteunn3shaftn9m24uca0gef.apps.googleusercontent.com
       client-secret: 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
-      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GOOGLE
+      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_GOOGLE
     oauth_twitter:
       client-id: f3wvNiOKi5yvHfj8OyNKQ68hS
       client-secret: nOtZGQ2eRJoYrXGDL8KogeGcsj6ziB3Qth69BE02qSB23eqUfx
-      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_TWITTER
-    oauth_github:
-      client-id: Ov23liHVP8DJxfl5jYup
-      client-secret: 825801e07450d201cd85c8982a8e54d4e2ebfb5f
-      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GITHUB
-    oauth_gitee:
-      client-id: cee99e8f7b9700adf78b94bad34aaba6e8c3757b050dd132e0ed9b9d71a9a8a5
-      client-secret: 1cd3ea5607ea07a9894e9c169a38b80a9bf3b0f9c09c57562157107bcf21d18f
-      redirect-uri: http://niudiantask.cn/api/oauth/callback/OAUTH_GITEE
+      redirect-uri: http://localhost:8080/api/oauth/callback/OAUTH_TWITTER
 
