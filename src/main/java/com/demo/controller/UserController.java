@@ -28,7 +28,6 @@ public class UserController {
     /**
      * Get current user information from token, ignore for demo
      */
-    @SaIgnore
     @GetMapping("/info")
     public UserVo getCurrentUser() {
         UserVo userVo = new UserVo();
