@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import cn.dev33.satoken.stp.StpUtil;
 import com.demo.entity.User;
 import com.demo.exception.ServiceException;
@@ -25,8 +26,9 @@ public class UserController {
 
 
     /**
-     * Get current user information from token
+     * Get current user information from token, ignore for demo
      */
+    @SaIgnore
     @GetMapping("/info")
     public UserVo getCurrentUser() {
         UserVo userVo = new UserVo();
