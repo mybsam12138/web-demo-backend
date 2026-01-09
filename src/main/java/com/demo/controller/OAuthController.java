@@ -24,7 +24,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/oauth")
 @Slf4j
 public class OAuthController {
-    
+
     private final OAuthStrategyFactory oAuthStrategyFactory;
     private final UserService userService;
 
@@ -39,7 +39,7 @@ public class OAuthController {
             log.info("Processing {} OAuth callback", provider.name());
             OAuthCommonService service = oAuthStrategyFactory.get(provider);
             AuthUser authUser = service.getOauthUser(callback);
-            
+
             // Save or update user in database
             User user = userService.saveOrUpdateUser(
                     authUser.getUuid(),
@@ -49,7 +49,7 @@ public class OAuthController {
                     authUser.getAvatar(),
                     authUser.getEmail()
             );
-            
+
             // Login using Sa-Token (create token and store user info)
             StpUtil.login(user.getId());
             SaSession session = StpUtil.getSession();
@@ -60,20 +60,15 @@ public class OAuthController {
             setIfNotNull(session, "avatar",    user.getAvatar());
             setIfNotNull(session, "email",     user.getEmail());
 
-            log.info("OAuth login successful for user: {} (ID: {}), token: {}", 
+            log.info("OAuth login successful for user: {} (ID: {}), token: {}",
                     user.getUsername(), user.getId(), StpUtil.getTokenValue());
-            
-            // Get redirect URL from state or use default frontend URL
-            String redirectUrl = callback.getState() != null 
-                    ? callback.getState() 
-                    : frontendUrl;
-            
+
             // Redirect to frontend success page
-            return new RedirectView(redirectUrl + "/callback/success");
+            return new RedirectView(frontendUrl + "/callback/success");
         } catch (Exception e) {
             log.error("OAuth callback failed for provider: {}", provider, e);
             // Redirect to frontend error page
-            return new RedirectView(frontendUrl + "/callback/error?message=" + 
+            return new RedirectView(frontendUrl + "/callback/error?message=" +
                     java.net.URLEncoder.encode(e.getMessage(), java.nio.charset.StandardCharsets.UTF_8));
         }
     }
