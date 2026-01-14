@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.mybsam12138</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <artifactId>web-demo-backend</artifactId>
@@ -22,10 +22,10 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.3.6</spring-boot.version>
-        <demo.base.spring-boot.starter>1.0.2</demo.base.spring-boot.starter>
+        <demo.base.spring-boot.starter>1.0.3</demo.base.spring-boot.starter>
         <mybatis-flex.spring-boot.starter>1.11.5</mybatis-flex.spring-boot.starter>
         <sa-token>1.38.0</sa-token>
-        <justauth.spring-boot.starter>1.0.14</justauth.spring-boot.starter>
+        <justauth.spring-boot.starter>1.0.16</justauth.spring-boot.starter>
         <swagger>2.6.0</swagger>
     </properties>
 
