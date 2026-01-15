@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.mybsam12138</groupId>
         <artifactId>demo-parent</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.5</version>
     </parent>
 
     <artifactId>web-demo-backend</artifactId>
@@ -16,17 +16,9 @@
 
     <name>Web Demo Backend</name>
     <description>Backend demo application with OAuth integration</description>
-
     <properties>
-        <java.version>21</java.version>
-        <maven.compiler.release>21</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>3.3.6</spring-boot.version>
-        <demo.base.spring-boot.starter>1.0.3</demo.base.spring-boot.starter>
-        <mybatis-flex.spring-boot.starter>1.11.5</mybatis-flex.spring-boot.starter>
-        <sa-token>1.38.0</sa-token>
-        <justauth.spring-boot.starter>1.0.17</justauth.spring-boot.starter>
-        <swagger>2.6.0</swagger>
+        <demo.base.spring-boot.starter>1.0.8</demo.base.spring-boot.starter>
+        <justauth.spring-boot.starter>1.0.18</justauth.spring-boot.starter>
     </properties>
 
     <dependencies>
@@ -39,7 +31,6 @@
         <dependency>
             <groupId>com.mybatis-flex</groupId>
             <artifactId>mybatis-flex-spring-boot3-starter</artifactId>
-            <version>${mybatis-flex.spring-boot.starter}</version>
         </dependency>
 
         <dependency>
@@ -67,14 +58,14 @@
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-spring-boot3-starter</artifactId>
-            <version>${sa-token}</version>
+            <version>${sa-token.version}</version>
         </dependency>
 
         <!-- Sa-Token Redis integration -->
         <dependency>
             <groupId>cn.dev33</groupId>
             <artifactId>sa-token-redis-jackson</artifactId>
-            <version>${sa-token}</version>
+            <version>${sa-token.version}</version>
         </dependency>
 
 
@@ -88,7 +79,6 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>${swagger}</version>
         </dependency>
     </dependencies>
 
@@ -101,7 +91,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
                 <executions>
                     <execution>
                         <goals>
